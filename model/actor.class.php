@@ -1,21 +1,19 @@
 <?php
-
-class Movies {
+include_once("mysqlconnect.class.php");
+class Actor extends MySqlConnect{
+	private $connection;
 	private $MySqli;
 	public function __construct() {
-		$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
+		$this->connection = new MySqlConnect();
+		$this->MySqli = $this->connection->MySqliReference();
 	}
 	
 	public function __destruct()
     {
-		$this->MySqli->close();      
+		  
     }
-	public function getMySqliReference() {
-		return $this->MySqli;
-	}
-
 	
-	public function getMovieActor($constraints) {
+		public function getActor($constraints) {
 		$selectColumnsString = "*";
 		
 		$whereStringConditions = "";
@@ -36,11 +34,12 @@ class Movies {
 				$whereStringConditions = substr($whereStringConditions,0,sizeof($whereStringConditions)-6);
 			}
 		}
-		$fullQueryString = "SELECT ".$selectColumnsString." FROM MovieActor, Movie".$whereStringConditions;
+		$fullQueryString = "SELECT ".$selectColumnsString." FROM Actor".$whereStringConditions;
 		
+		//$results = $this->MySqli->query("SELECT ".$selectColumnsString." FROM ".$constraints['table']."".$whereStringConditions);
 		$results = $this->MySqli->query($fullQueryString);
-		//echo $results->affected_rows;
 		if(!$results) {
+			//print_r("invalid query");
 			print_r($this->MySqli->error);
 			return -1;
 		}
@@ -49,20 +48,24 @@ class Movies {
 		}
 	}
 	
-	public function searchMovies($constraints) {
-		$query = "SELECT id, title FROM Movie WHERE ";
-		$size = sizeof($constraints);	
-			for($i=0;$i<$size;$i++) {
-				
-					if($i!=$size-1) {
-						$query .= "title LIKE '%".$constraints[$i]."%' OR ";
-					}
-					else {
-						$query .= "title LIKE '%".$constraints[$i]."%'";
-					}
-				}
+	public function searchActors($constraints) {
+		$query = "select id, first, last, dob FROM Actor WHERE ";
+		
+		for($i = 0; $i < sizeof($constraints); $i++) {
+			if($i != sizeof($constraints)-1) {
+				//echo "counter: " . $i. "<br />";
+				$query .="first LIKE '%".$constraints[$i]."%' OR last LIKE '%".$constraints[$i]."%' OR ";		
+			}
+			else {
+				$query .= "first LIKE '%".$constraints[$i]."%' OR last LIKE '%".$constraints[$i]."%' ";
+			}
+			
+		}
+		$query .= "ORDER BY first, last";
+	
 		$results = $this->MySqli->query($query);
 		if(!$results) {
+			//print_r("invalid query");
 			print_r($this->MySqli->error);
 			return -1;
 		}
@@ -71,5 +74,6 @@ class Movies {
 		}
 	}
 }
+
 
 ?>

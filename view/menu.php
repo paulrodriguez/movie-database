@@ -2,11 +2,11 @@
 
 ///ini_set('display_erros', 'On');
 error_reporting (E_ALL ^ E_NOTICE);
-include("/model/variables.php");
+include("../model/variables.php");
 ?>
 <div class='nav'>
 	<div class='search_bar'>
-		<form method='get' action = 'search.php'>
+		<form method='get' action = '../controller/search.php'>
 			<input style="font-size:12pt" type='text' name='search_query' value ='' />
 			<input style="font-size:12pt" type='submit' name='submit' value='SEARCH' />
 		</form>
@@ -23,7 +23,7 @@ include("/model/variables.php");
 					<li class="page-item"><div><a href="add_actor_to_movie.php">ADD ACTOR TO MOVIE</a></div></li>
 					<li class="page-item"><div><a href="add_director_to_movie.php">ADD DIRECTOR TO MOVIE</a></div></li>
 					<li class="page-item"><div><a href="add_movie.php">ADD NEW MOVIE</a></div></li>
-					<li class="page-item"><div><a href="add_review.php">RATE A MOVIE</a></div></li>	
+					<li class="page-item"><div><a href="/movies/controller/review.php">RATE A MOVIE</a></div></li>	
 				</ul>
 			</li>
 			<li style="<?php echo $menuSize[1];?>;">

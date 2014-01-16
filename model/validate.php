@@ -15,9 +15,13 @@ if($_GET['val'] == 'createaccount') {
 		header("Location: ../register.php");
 	}
 	else {
-		$validator->insertData();
-		session_destroy();
-		header('Location: ../index.php');
+		if($validator->insertData() == 1) {
+			session_destroy();
+			header('Location: ../index.php');
+		}
+		else {
+			header('Location: ../register.php');
+		}
 		//echo "your info will be saved to the database";
 	}
 }
@@ -25,6 +29,8 @@ else if($_GET['val'] == 'login') {
 	//get email
 	$_SESSION['valuelogin']['txtEmail'] = $_POST['txtEmail'];
 	//if log in successful return to  main page
+	//if($validator->validateEmail($_POST["txtEmail"]) == 1)
+	
 	if($validator->checkLogIn() == 1) {
 		$_SESSION['user']['login'] = 'yes';
 		$_SESSION['user']['email'] = $_POST["txtEmail"];

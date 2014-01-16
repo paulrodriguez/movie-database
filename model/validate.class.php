@@ -13,6 +13,11 @@ class Validate {
     }
 	//return 1 if successful, 0 otherwise
 	public function checkLogIn() {
+		if ($this->validateEmail($_POST['txtEmail']) < 0) {
+			$_SESSION['errorlogin']['txtEmail'] = 'email is invalid';
+			return 0;
+		}
+	
 		$query = $this->MySqli->query("SELECT * FROM user where email='".$_POST['txtEmail']."'");
 		if($this->MySqli->affected_rows == 0) {
 			$_SESSION['errorlogin']['txtEmail'] = 'there is no account associated with this email.';
@@ -35,19 +40,29 @@ class Validate {
 	}
 	
 	public function insertData() {
-		$query  = "INSERT INTO user VALUES('".$_POST['txtUsername']."', '".$_POST['txtEmail']."', '".$_POST['txtPwd']."', '".$_POST['txtFirst']."', '".$_POST['txtLast']."')";
-		if(!$this->MySqli->query($query)) {
-			echo "error message: " . $this->MySqli->error;
-		}
-		else {
-			echo "insertion successful";
+		//$query  = "INSERT INTO user VALUES('".$_POST['txtUsername']."', '".$_POST['txtEmail']."', '".$_POST['txtPwd']."', '".$_POST['txtFirst']."', '".$_POST['txtLast']."')";
+		$query = "INSERT INTO user VALUES(?,?,?,?,?);";
+		if ($stmt = $this->MySqli->prepare($query)) {
+			$stmt->bind_param("sssss",$username,$email, $pwd, $first, $last);
+			$username = $_POST["txtUsername"];
+			$email = $_POST["txtEmail"];
+			$pwd = $_POST["txtPwd"];
+			$first = $_POST["txtFirst"];
+			$last = $_POST["txtLast"];
+			//$stmt->execute();
+			if(!$stmt->execute()) {
+				return 0;
+			}
+			else {
+				return 1;
+			}
 		}
 	}
 	
 	public function validatePHP() {
 		$iserror = 1;
 		if($this->validateUsername($_POST['txtUsername']) == 0) $iserror = 0;
-		if($this->validateEmail($_POST['txtEmail']) == 0) $iserror = 0;
+		if($this->validateEmail($_POST['txtEmail']) <= 0) $iserror = 0;
 		if($this->validateFirstname($_POST['txtFirst']) == 0) $iserror = 0;
 		if($this->validateLastname($_POST['txtLast']) == 0) $iserror = 0;
 		if($this->validatePassword($_POST['txtPwd'], $_POST['txtConfirmPwd']) == 0) $iserror = 0;
@@ -71,19 +86,29 @@ class Validate {
 		}
 	}
 	
+	/***
+	@$email: takes in the email to validate
+	@return: returns 1 if email is in correct format, 0 if email already exists in database or -1 if email is of incorrect format
+	
+	***/
 	public function validateEmail($email) {
-		$query = $this->MySqli->query("SELECT email FROM User WHERE email='".$email."'");
-		if($this->MySqli->affected_rows > 0 || $email =="") {
-			$_SESSION['errors']['txtEmail'] = 'email field is empty or email is already in use.';
-			return 0;
-		}
+		
+		
 		if(preg_match("/^(?!.*\.{2})[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/",$email)) {
 			$_SESSION['errors']['txtEmail'] = '';
-			return 1;
+			$query = $this->MySqli->query("SELECT email FROM User WHERE email='".$email."'");
+			//if email already exists it will return a row
+			if($this->MySqli->affected_rows > 0) {
+				$_SESSION['errors']['txtEmail'] = 'an account with this email already exists.';
+				return 0;
+			}
+			else {
+				return 1;
+			}
 		}
 		else {
 			$_SESSION['errors']['txtEmail'] = 'email is of incorrect format.';
-			return 0;
+			return -1;
 		}
 	}
 	public function validateFirstname($first) {
