@@ -1,0 +1,51 @@
+/*the code below is the style for menu*/
+.outer_div {margin: 0 auto; width:1000px;background-color:black; color:white}
+.outer_div a{color:yellow}
+body {background-color:black}
+
+.nav{width:100%;float:right;margin:0px; padding:0px; margin-top:0px}
+/*.nav .s1 a{text-decoration:none; color:black;display:block}
+.nav .s2 a{text-decoration:none; color:black;display:block;}
+	*/	
+	/*the first list elements of our menu that are always visible*/
+div#wrapper{display:inline-block}
+ul#main_menu{list-style:none; float:right;margin:0px; padding:0px}
+ul#main_menu > li{position:relative;float:right;border:solid 1px #006400;}
+#main_menu > li.first{border-left:solid 2px #006400;}
+#main_menu > li.last{border-right:solid 2px #006400;}
+	
+/*styles for inner menu*/
+
+/*hide the submenu and set it up*/
+ul#main_menu > li > ul{width:100%;position:absolute;list-style:none;margin:0px;padding:0px;display:none;background-color:white}
+ul#main_menu > li > ul.subMenuDropdown > li.page-item {position:relative; color:black;border:solid 1px grey;display:block}
+ul#main_menu > li > ul.subMenuDropdown > li.page-item > div {width:100%;height:100%; color:black}
+ul#main_menu > li > ul.subMenuDropdown > li.page-item > div > a {position:relative;color:black;display:inline-block;text-decoration:none;width:100%;height:100%;text-align:center}
+
+/*ul.second_submenu li  div{position:relative; margin-right:0px}
+
+ul#main_menu > li > ul.subMenuDropdown{float:left;position:absolute;margin:0px; padding:0px;}
+/*
+ ul.second_submenu{width:180px;float:left;position:absolute;margin:0px; padding:0px;}
+ ul.first_submenu{width:140px;float:left; position:absolute;margin:0px; padding:0px}
+*/
+
+/*************dropdown effect using css******************/
+
+/*show the submenu when hovering over a main menu link*/
+ul#main_menu > li:hover > ul.subMenuCssDropdown{display:block;background-color:white;}
+/*set background color of the main menu link being hovered*/
+ul#main_menu > li:hover{background-color:grey;} 
+/*change style when we are over a sub menu link*/
+ul#main_menu > li:hover > ul.subMenuCssDropdown > li:hover{background-color:yellow;} 
+
+
+/*
+.s1{width:140px;text-align:center}
+.s2{width:180px;text-align:center}*/
+/*update width when adding new menus*/
+#wrapper{width:100%;margin:0 auto;margin-right:20px;}
+/*.container{margin:0 auto;width:1000px;background-color:black;color:white}*/
+.search_bar{position:absolute}
+
+

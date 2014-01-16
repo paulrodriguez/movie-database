@@ -1,0 +1,9 @@
+label {
+float:left;
+
+width:150px;
+}
+.txt{height:20px}
+.error{color:red}
+.loginsubmit {margin-left:90px; width:100px; height:30px; border-radius:10px}
+.left{margin-left:150px; border-radius:10px; width:100px; height:30px/*background-image:url('Koala.jpg')*/}

@@ -1,0 +1,5 @@
+AuthType Basic
+AuthUserfile "../htdocs/forbidden/.htpasswd"
+AuthName "Enter valid username and password"
+
+require valid-user
