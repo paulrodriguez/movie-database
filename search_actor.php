@@ -9,7 +9,7 @@ $movies = new Movies();
 //$con = db_con("movie_db");
 $onload = "";
 //if an actor id is in url when we get here, then get that actor info
-if(isset($_GET['actor'])) {$onload = "onload='processActor();'";}
+//if(isset($_GET['actor'])) {$onload = "onload='processActor();'";}
 ?>
 <head>
 	<title>ACTOR INFO</title>
@@ -17,7 +17,7 @@ if(isset($_GET['actor'])) {$onload = "onload='processActor();'";}
 	<!--<link rel='stylesheet' type='text/css' href='menu.css'>-->
 	<style type='text/css'>
 		form td, form, table{font-size:14pt; color:white}
-		#getActors {visibility:hidden;}
+		#getActors {display:none;}
 	</style>
 	
 	<!--the script that contains the code to obtain stuff from the database-->
@@ -25,7 +25,9 @@ if(isset($_GET['actor'])) {$onload = "onload='processActor();'";}
 
 <script type="text/javascript">
 	window.onload = function() {
-		document.getElementById("getActors").style.visibility = "visible";
+		
+		<?php if(isset($_GET['actor'])) { ?>processActor(); <?php }?>
+		document.getElementById("getActors").style.display = "block";
 	}
 </script>
 </head>
