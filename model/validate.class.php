@@ -43,6 +43,7 @@ class Validate {
 			echo "insertion successful";
 		}
 	}
+	
 	public function validatePHP() {
 		$iserror = 1;
 		if($this->validateUsername($_POST['txtUsername']) == 0) $iserror = 0;

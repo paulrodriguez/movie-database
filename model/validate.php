@@ -24,17 +24,16 @@ if($_GET['val'] == 'createaccount') {
 else if($_GET['val'] == 'login') {
 	//get email
 	$_SESSION['valuelogin']['txtEmail'] = $_POST['txtEmail'];
-	//if log in successful return to 
+	//if log in successful return to  main page
 	if($validator->checkLogIn() == 1) {
 		$_SESSION['user']['login'] = 'yes';
 		$_SESSION['user']['email'] = $_POST["txtEmail"];
+		$_SESSION['timeout'] = time();
 		header("Location: ../index.php");
 	}
 	else {
 		header('Location: ../login.php');
 	}
 }
-
-
 
 ?>

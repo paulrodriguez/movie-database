@@ -1,8 +1,9 @@
-<?php session_start(); ?>
+<?php session_start(); session_regenerate_id(); ?>
 <!DOCTYPE html>
 <html>
 <head>
 <?php
+
 include 'model/destroy_vars.php';
 include 'model/connect.php';
 $con = db_con("movie_db");

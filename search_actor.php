@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); session_regenerate_id(); ?>
 <!DOCTYPE html>
 <html>
 <?php

@@ -1,5 +1,6 @@
 <?php 
 session_start();
+session_regenerate_id();
 //error_reporting(E_ERROR | E_WARNING);
 require_once("model/session_vars.php");
 
