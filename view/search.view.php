@@ -18,7 +18,9 @@ while($row = mysqli_fetch_array($testresult)) {
 }*/
 ?>
 
-<head> <title> Search Actor/Actress </title>
+<head> 
+	<meta charset="utf-8" />
+	<title> Search Actor/Actress </title>
 	<?php include '../model/header.php'; ?>
 	<!--<link rel='stylesheet' type='text/css' href='menu.css'>-->
 		<style type="text/css">
@@ -31,33 +33,40 @@ while($row = mysqli_fetch_array($testresult)) {
 <?php
 
 include 'menu.php';
-
-	echo "
-	<span> SEARCH RESULTS FOR <b>[".$_GET['search_query']."]</b> :</span>
+if($nosearch == false) {
+?>
+<span> SEARCH RESULTS FOR <b><?php echo $searchQuery; ?></b> :</span>
 	<div style='height:30px; width:100%'></div>
 	<b>ACTORS</b><br />
-	";
+	<?php
 	if(!is_int($getRelevantActors)) {
-		echo "<table>";
-		while($row = $getRelevantActors->fetch_assoc()) {
-			echo "<tr><td>".$row['first']. " " . $row['last'] . "</td> <td>(".$row['dob'].")</td><td><a href='search_actor.php?actor=".$row['id']."'>more info</a></td></tr>";
-		}
-		echo "
+	?>
+	<table>
+	<?php	while($row = $getRelevantActors->fetch_assoc()) { ?>
+		<tr>
+			<td><?php echo $row['first'] . " " . $row['last']; ?> </td> 
+			<td>(<?php echo $row['dob']; ?>)</td>
+			<td><a href="/movies/controller/actors.php?aid=<?php echo $row['id']; ?>">more info</a></td>
+		</tr>
+	<?php	}//end of while loop ?>
+
 		</table>
 		<div style='height:30px;width:100%'></div><b>MOVIES</b>
 		
-		";
-	}
+	<?php }//end if ?>
 	
-	if(!is_int($getRelevantMovies)) {
-		echo "<table>";
-		while($rows = $getRelevantMovies->fetch_assoc()) {
+	<?php if(!is_int($getRelevantMovies)) { ?>
+		<table>
+		<?php while($rows = $getRelevantMovies->fetch_assoc()) { ?>
 
-					echo "<tr><td>".$rows['title']."</td><td><a href='search_movie.php?movie=".$rows['id']."'>more info</a></td></tr>";
-			}
-		echo "</table>";
+			<tr>
+				<td> <?php echo $rows['title']; ?></td><td><a href="search_movie.php?movie=<?php echo $rows['id']; ?>">more info</a></td>
+			</tr>
+			<?php } ?>
+		</table>
+<?php
 	}
-
+}
 
 ?>
 

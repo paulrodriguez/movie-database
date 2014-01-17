@@ -2,11 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
 <?php
-
 include '../model/destroy_vars.php';
-//include 'model/connect.php';
-//$con = db_con("movie_db");
 ?>
 	<title>ADD REVIEW</title>
 	
@@ -39,39 +37,34 @@ include '../model/destroy_vars.php';
 include_once("menu.php");
 
 ?>
-<form method="get" action="/controller/review.php">
+<form method="get" action="/movies/controller/review.php">
 	<fieldset>
 		<legend>ADD REVIEW</legend>
 		<table>
 			<tr><td>NAME</td><td><input type="text" name='txtReviewer' /></td></tr>
 			<tr>
-			<td>MOVIE</td><td>
-			<select name='movieId'>
-			<?php
-			
-			//$get_movies = mysqli_query($con,"SELECT id, title FROM Movie");
-			while ($row = $listOfMovies->fetch_array()) {
-				/*if(isset($_GET['movie']) && is_int($_GET['movie'])) {
-					$selected = "";
-					if($_GET['movie'] == $row['id']) {
-						$selected = "selected='selected'";
+				<td>MOVIE</td>
+				<td>
+					<select name='movieId'>
+					<?php
+					//prints out all the movies in a select element tag
+					while ($row = $listOfMovies->fetch_array()) {
+						if (isset($movie)) {
+							$selected = "";
+							if($movie == $row['id']) {
+								$selected = "selected='selected'";
+							}
+						}
+				
+						echo "<option value='".$row['id']."' $selected>".$row['title']."</option>";
 					}
-				}*/
-				if (isset($movie)) {
-					$selected = "";
-					if($movie == $row['id']) {
-						$selected = "selected='selected'";
-					}
-				}
-		
-				echo "<option value='".$row['id']."' $selected>".$row['title']."</option>";
-			}
-			?>
+					?>
 
-			</select>
-			</td>
+					</select>
+				</td>
 			</tr>
-			<tr><td>RATING</td>
+			<tr>
+				<td>RATING</td>
 				<td>
 					<input name="rating" type="radio" class="star" value="1"/><span class="rating_number">1</span> 
 					<input name="rating" type="radio" class="star" value="2"/>  <span class="rating_number">2</span> 
@@ -82,11 +75,13 @@ include_once("menu.php");
 			</tr>
 			<tr><td></td><td></td></tr>
 			<tr><td></td><td></td></tr>
-			<tr><td valign="top">COMMENT</td><td><textarea name='txtComment' cols='50' rows='10'></textarea></td></tr>
+			<tr>
+				<td valign="top">COMMENT</td><td><textarea name='txtComment' cols='50' rows='10'></textarea></td>
+			</tr>
 			<tr><td><input type="submit" value="Submit Review" name='sbtnMovieReview' /></td></tr>
 		</table>
 	</fieldset>
 </form>
-</div>
+</div><!--end class=outer_div-->
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 include_once("mysqlconnect.class.php");
-class Review extends MySqlConnect {
+class ReviewModel extends MySqlConnect {
 	private $connection;
 	private $MySqli;
 	public function __construct() {

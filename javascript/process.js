@@ -53,7 +53,8 @@ if (str.length==0)
  //createXmlHttpRequestObject();
  
 xmlhttp.onreadystatechange = getActor;
-xmlhttp.open("GET","./controller/get_actor_info.php?aid="+str,true);
+//edit 1
+xmlhttp.open("GET","/movies/controller/actors.php?aid="+str+"&ajax=1",true);
 xmlhttp.send();
 }
 
@@ -76,7 +77,7 @@ if (str.length==0)
   
 
 xmlhttp.onreadystatechange = getMovie;
-xmlhttp.open("GET","./controller/get_movie_info.php?mid="+str,true);
+xmlhttp.open("GET","/movies/controller/movies.php?mid="+str+"&ajax=1",true);
 xmlhttp.send();
 }
 

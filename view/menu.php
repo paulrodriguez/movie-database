@@ -19,18 +19,18 @@ include("../model/variables.php");
 			<li class="last" style="<?php echo $menuSize[0];?>;"> 
 				<div style="width:<?php echo $menuSize[0];?>; text-align:center"> ADD CONTENT</div>
 				<ul class="subMenuDropdown subMenuCssDropdown">
-					<li class="page-item"><div><a href="add_actor_director.php">ADD NEW ACTOR/DIRECTOR</a></div></li>
-					<li class="page-item"><div><a href="add_actor_to_movie.php">ADD ACTOR TO MOVIE</a></div></li>
-					<li class="page-item"><div><a href="add_director_to_movie.php">ADD DIRECTOR TO MOVIE</a></div></li>
-					<li class="page-item"><div><a href="add_movie.php">ADD NEW MOVIE</a></div></li>
+					<li class="page-item"><div><a href="/add_actor_director.php">ADD NEW ACTOR/DIRECTOR</a></div></li>
+					<li class="page-item"><div><a href="/movies/add_actor_to_movie.php">ADD ACTOR TO MOVIE</a></div></li>
+					<li class="page-item"><div><a href="/movies/add_director_to_movie.php">ADD DIRECTOR TO MOVIE</a></div></li>
+					<li class="page-item"><div><a href="/movies/add_movie.php">ADD NEW MOVIE</a></div></li>
 					<li class="page-item"><div><a href="/movies/controller/review.php">RATE A MOVIE</a></div></li>	
 				</ul>
 			</li>
 			<li style="<?php echo $menuSize[1];?>;">
 				<div style="width:<?php echo $menuSize[1];?>; text-align:center">BROWSE DATABASE</div>
 				<ul class="subMenuDropdown subMenuCssDropdown">						
-					<li class="page-item"><div><a href="search_actor.php">SEARCH ACTOR INFORMATION</div></a></li>
-					<li class="page-item"><div><a href="search_movie.php">SEARCH MOVIE INFORMATION</a></div></li>
+					<li class="page-item"><div><a href="/movies/controller/actors.php">SEARCH ACTOR INFORMATION</div></a></li>
+					<li class="page-item"><div><a href="/movies/controller/movies.php">SEARCH MOVIE INFORMATION</a></div></li>
 				</ul>
 			</li>
 			<li class="first" style="<?php echo $menuSize[2];?>;"> 

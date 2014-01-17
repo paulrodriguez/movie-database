@@ -1,7 +1,7 @@
 <?php
 require_once("../model/review.class.php");
 
-$reviews = new Review();
+$reviews = new ReviewModel();
 //if user submitted review
 if(isset($_GET['sbtnMovieReview'])) {
 	extract($_GET);

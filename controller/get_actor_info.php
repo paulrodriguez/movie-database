@@ -1,14 +1,14 @@
 <?php
-require_once("../model/movies.class.php");
+require_once("../model/actors.class.php");
 //include '../model/connect.php';
 //$con = db_con("movie_db");
-$movies = new Movies();
+$actors = new ActorsModel();
 
 if(isset($_GET["aid"])) {
 	//get the actor info and print it out
 	$constraints['where']['id'] = $_GET['aid'];
-	$constraints['table'] = "Actor";
-	$get_info_actor = $movies->getActor($constraints);
+	//$constraints['table'] = "Actor";
+	$get_info_actor = $actors->getActor($constraints);
 	//mysqli_query($con,"SELECT * FROM Actor WHERE id=".$_GET['aid']."");
 	
 	echo "<table>";

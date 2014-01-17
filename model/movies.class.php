@@ -1,20 +1,63 @@
 <?php
-
-class Movies {
+include_once("mysqlconnect.class.php");
+class MoviesModel extends MySqlConnect{
+	private $connection;
 	private $MySqli;
 	public function __construct() {
-		$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
+		$this->connection = new MySqlConnect();
+		$this->MySqli = $this->connection->MySqliReference();
 	}
 	
 	public function __destruct()
     {
-		$this->MySqli->close();      
+		  
     }
-	public function getMySqliReference() {
-		return $this->MySqli;
+	
+	public function rownum() {
+		return $this->MySqli->affected_rows;
+	}
+	
+	
+	public function getMovie($constraints) {
+		$selectColumnsString = "*";
+		
+		$whereStringConditions = "";
+		//create string if we have to select specific columns
+		if(isset($constraints['select'])) {
+			if(sizeof($constraints['select']) > 0) {
+				$selectColumnsString = implode(", ",$constraints['select']);
+			}
+		}
+		
+		//create string conditions for query string
+		if(isset($constraints['where'])) {
+			if(sizeof($constraints['where']) > 0) {
+				$whereStringConditions = " WHERE ";
+				foreach($constraints['where'] as $key => $value) {
+				$whereStringConditions .= $key."=".$value." AND ";
+				}
+				$whereStringConditions = substr($whereStringConditions,0,sizeof($whereStringConditions)-6);
+			}
+		}
+		$fullQueryString = "SELECT ".$selectColumnsString." FROM Movie".$whereStringConditions;
+		
+		//$results = $this->MySqli->query("SELECT ".$selectColumnsString." FROM ".$constraints['table']."".$whereStringConditions);
+		$results = $this->MySqli->query($fullQueryString);
+		if(!$results) {
+			//print_r("invalid query");
+			print_r($this->MySqli->error);
+			return -1;
+		}
+		else {
+			return $results;
+		}
 	}
 
-	
+	/*****
+	gets all the movies for an actor, or all the actors in a movie
+	@param $constaints: the constraints for the select clause and where clause
+	@return: returns the reference to the query, or 
+	*****/
 	public function getMovieActor($constraints) {
 		$selectColumnsString = "*";
 		
