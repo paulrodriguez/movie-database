@@ -4,6 +4,7 @@ $con = db_con("movie_db");
 
 
 if(isset($_GET['mid'])) {
+
 	$get_directors = mysqli_query($con,"SELECT * FROM MovieDirector MD, Director D WHERE D.id=MD.did AND MD.mid=".$_GET['mid']."");
 	$directors = "";
 	

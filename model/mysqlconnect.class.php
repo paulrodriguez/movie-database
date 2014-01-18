@@ -1,6 +1,6 @@
 <?php
 class MySqlConnect {
-	private $MySqli;
+	protected $MySqli;
 	public function __construct() {
 		$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
 		//add code for checking against database connection failure
@@ -12,8 +12,8 @@ class MySqlConnect {
 		$this->MySqli->close();      
     }
 	
-	public function MySqliReference() {
-		return $this->MySqli;
+	public function mysqlirows() {
+		return $this->MySqli->affected_rows;
 	}
 }
 

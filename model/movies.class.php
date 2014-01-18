@@ -1,16 +1,18 @@
 <?php
 include_once("mysqlconnect.class.php");
+
 class MoviesModel extends MySqlConnect{
-	private $connection;
-	private $MySqli;
+	//private $connection;
+	//private $MySqli;
 	public function __construct() {
-		$this->connection = new MySqlConnect();
-		$this->MySqli = $this->connection->MySqliReference();
+		parent::__construct();
+		//$this->connection = new MySqlConnect();
+		//$this->MySqli = $this->connection->MySqliReference();
 	}
 	
 	public function __destruct()
     {
-		  
+		  parent::__destruct();
     }
 	
 	public function rownum() {

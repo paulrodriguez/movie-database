@@ -26,7 +26,12 @@ while($row = mysqli_fetch_array($testresult)) {
 		<style type="text/css">
 			table, b{font-size:14pt; color:white}
 		</style>
-
+		<script type="text/javascript">
+	window.onload = function() {
+		var menu = new Menu(document.getElementById("main_menu"));
+		
+	}
+	</script>
 	</head>
 <body>
 <div class='outer_div'> <!--must be included on every page-->

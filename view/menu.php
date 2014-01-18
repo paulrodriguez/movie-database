@@ -26,7 +26,7 @@ include("../model/variables.php");
 					<li class="page-item"><div><a href="/movies/controller/review.php">RATE A MOVIE</a></div></li>	
 				</ul>
 			</li>
-			<li style="<?php echo $menuSize[1];?>;">
+			<li class="middle" style="<?php echo $menuSize[1];?>;">
 				<div style="width:<?php echo $menuSize[1];?>; text-align:center">BROWSE DATABASE</div>
 				<ul class="subMenuDropdown subMenuCssDropdown">						
 					<li class="page-item"><div><a href="/movies/controller/actors.php">SEARCH ACTOR INFORMATION</div></a></li>

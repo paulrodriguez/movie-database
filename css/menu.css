@@ -18,7 +18,7 @@ ul#main_menu > li{position:relative;float:right;border:solid 1px #006400;}
 
 /*hide the submenu and set it up*/
 ul#main_menu > li > ul{width:100%;position:absolute;list-style:none;margin:0px;padding:0px;display:none;background-color:white}
-ul#main_menu > li > ul.subMenuDropdown > li.page-item {position:relative; color:black;border:solid 1px grey;display:block;background-color:white}
+ul#main_menu > li > ul.subMenuDropdown > li.page-item {position:relative; color:black;border:solid 1px grey;display:block;background-color:white;width:100%}
 ul#main_menu > li > ul.subMenuDropdown > li.page-item > div {width:100%;height:100%; color:black}
 ul#main_menu > li > ul.subMenuDropdown > li.page-item > div > a {position:relative;color:black;display:inline-block;text-decoration:none;width:100%;height:100%;text-align:center}
 

@@ -1,16 +1,17 @@
 <?php
 include_once("mysqlconnect.class.php");
 class ReviewModel extends MySqlConnect {
-	private $connection;
-	private $MySqli;
+	//private $connection;
+	//private $MySqli;
 	public function __construct() {
-		$this->connection = new MySqlConnect();
-		$this->MySqli = $this->connection->MySqliReference();
+		parent::__construct();
+		//$this->connection = new MySqlConnect();
+		//$this->MySqli = $this->connection->MySqliReference();
 	}
 	
 	public function __destruct()
     {
-		  
+		  parent::__destruct();
     }
 	
 	public function validateReviewData($user, $rating, $comment, $movie) {
@@ -26,21 +27,24 @@ class ReviewModel extends MySqlConnect {
 	}
 	
 	public function validateRating($rating) {
-		if(!is_int($rating) || $rating == "") return 0;
+		if(!is_int($rating) || $rating == "") {
+			return 0;
+		}
 		return 1;
 	}
 	public function validateComment($comment) {
+		if($comment == "")
+			return 0;
+		else if (preg_match( "/<\/?(\s)*script(\s*)|(.*)>/",$comment))
+			return -1;
 		return 1;
 	}
-	public function validateMovie($movie) {
+	public function validateMovieId($movie) {
 		if(!is_int($movie) || $movie =="") return 0;
 		return 1;
 	}
 	
-	public function redirectToReviewPage($movie) {
-		$listOfMovies = $this->MySqli->query("SELECT id, title FROM Movie");
-		include_once("../view/review.view.php");
-	}
+	
 	
 	public function insertReview($user, $rating, $comment, $movie) {
 		$insertReviewQuery = "INSERT INTO Review (name, mid, rating, comment) VALUES(?,?,?,?)";
@@ -55,6 +59,29 @@ class ReviewModel extends MySqlConnect {
 			else {
 				return 1;
 			}
+		}
+	}
+	
+	public function getMovieReviews($movieId) {
+		$queryString = "SELECT * FROM Review WHERE mid=".$movieId;
+		
+		$results = $this->MySqli->query($queryString);
+		if(!$results) {
+			return -1;
+		}
+		else {
+			return $results;
+		}
+ 	}
+	
+	public function getAverageMovieReview($movieId) {
+		$queryString = "SELECT AVG(rating) AS avg_rating FROM Review WHERE mid=".$movieId;
+		$results = $this->MySqli->query($queryString);
+		if(!$results) {
+			return -1;
+		}
+		else {
+			return $results;
 		}
 	}
 }

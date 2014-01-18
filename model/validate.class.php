@@ -1,15 +1,16 @@
 <?php
 //session_start();
+include_once("mysqlconnect.class.php");
 //this class is included in the page that is using it
 class Validate {
-	private $MySqli;
 	public function __construct() {
-		$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
+		parent::__construct();
+		//$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
 	}
 	
 	public function __destruct()
     {
-		$this->MySqli->close();      
+		parent::__destruct();   
     }
 	//return 1 if successful, 0 otherwise
 	public function checkLogIn() {

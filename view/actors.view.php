@@ -22,10 +22,11 @@ include '../model/destroy_vars.php';
 	</style>
 	
 	<!--the script that contains the code to obtain stuff from the database-->
-<script type='text/javascript' src='/movies/javascript/process.js'></script>
+<script type='text/javascript' src='/movies/scripts/process.js'></script>
 
 <script type="text/javascript">
 	window.onload = function() {
+		var menu = new Menu(document.getElementById("main_menu"));
 		document.getElementById("getActors").style.display = "block";
 	}
 </script>

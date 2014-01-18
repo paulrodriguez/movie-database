@@ -1,16 +1,17 @@
 <?php
 include_once("mysqlconnect.class.php");
 class ActorsModel extends MySqlConnect{
-	private $connection;
-	private $MySqli;
+	//private $connection;
+	//private $MySqli;
 	public function __construct() {
-		$this->connection = new MySqlConnect();
-		$this->MySqli = $this->connection->MySqliReference();
+		parent::__construct();
+		//$this->connection = new MySqlConnect();
+		//$this->MySqli = $this->connection->MySqliReference();
 	}
 	
 	public function __destruct()
     {
-		  
+		  parent::__destruct();
     }
 	
 		public function getActor($constraints) {
@@ -46,6 +47,20 @@ class ActorsModel extends MySqlConnect{
 		else {
 			return $results;
 		}
+	}
+	
+	
+	public function getActorsInMovie($movieId) {
+		$queryString = "SELECT * FROM Actor A, MovieActor MA WHERE MA.aid=A.id AND MA.mid=".$movieId;
+		
+		$results = $this->MySqli->query($queryString);
+		if(!$results) {
+			return -1;
+		}
+		else {
+			return $results;
+		}
+		
 	}
 	
 	public function searchActors($constraints) {
