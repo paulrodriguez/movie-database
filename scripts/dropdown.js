@@ -1,10 +1,11 @@
 function Menu(mainMenuRef) {
 	this.menu = mainMenuRef;
-	//this.complete = false;
+	this.complete = false;
 	this.init();
 }
 
 Menu.prototype.subMenuIn = function(liElement) {
+//if(!this.complete) return;
 //	if(this.complete == false) return;
 //	var liClassName = liElement.className;
 	
@@ -15,14 +16,14 @@ Menu.prototype.subMenuIn = function(liElement) {
 	//console.log("oWith: "+oWidth);
 	//console.log("in before animation: " + $(liElement).width());
 	//console.log("right: "+parseInt($(liElement).css("right")));
-	$(liElement).stop().animate({'width': '+=20px', 'right':'+=10px'},{duration: 50, 
+	$(liElement).animate({'width': '+=20px', 'right':'+=10px'},{duration: 50, 
 	progress: function() {
 		currWidth = $(this).width()-oWidth;
 		//console.log("current width cange:"+currWidth);
 		//console.
 	},
 	complete: function() {
-		$(this).css({"background-color":"yellow", "position":"relative", "overflow":"visible"});
+		$(this).css({"background-color":"yellow", "overflow":"visible", "display":"inner-block"});
 		//this.style.position = "relative";
 		//console.log("completed animation: "+$(this).width());
 	},
@@ -40,11 +41,12 @@ Menu.prototype.subMenuIn = function(liElement) {
 	//$(liElement).css({'background-color' : 'yellow', 'position':'relative', 'width':'+=20px'});
 }
 Menu.prototype.subMenuOut = function(liElement) {
+//if(!this.complete) return;
 //	if(this.complete == false) return;
 	//console.log("submenuout element width: "+$(liElement).width());
 
 	//console.log("width on hover out: "+$(liElement).width());
-	$(liElement).stop().animate({'width': '-=20px', 'right':'-=10px'},{duration: 50, 
+	$(liElement).animate({'width': '-=20px', 'right':'-=10px'},{duration: 50, 
 		progress: function() {
 			//console.log("submenuout current width: "+$(this).width());
 		},
@@ -54,7 +56,18 @@ Menu.prototype.subMenuOut = function(liElement) {
 	
 		},
 		fail: function() {
-		
+			if($(this).className() == "page-item0") 
+			{
+				$(this).css({"width":"100px"});
+			}
+			else if($(this).className() =="page-item1")
+			{
+				$(this).css({"width":"180px"});
+			}
+			else if($(this).className() == "page-item2") 
+			{
+				$(this).css({"width":"140px"});
+			}
 			$(this).css({"right":"0px"});
 			//console.log("width in submenuout failed function: "+$(this).width());
 		}
@@ -69,7 +82,9 @@ Menu.prototype.mainMenuIn = function(liElement) {
 	//var subMenuRef = document.querySelectorAll(liElement.nodeName+">ul");
 	//console.log("query in mainMenuIn: "+liElement.nodeName+">ul");
 	//console.log(subMenuRef);
-	$(subMenuRef).stop().slideDown({duration: 500, easing: 'easeOutBounce'});
+	$(subMenuRef).stop(false, true).slideDown({duration: 500, easing: 'easeOutBounce', complete: function() {
+		oThis.complete = true;
+	}});
 
 	
 }
@@ -77,7 +92,7 @@ Menu.prototype.mainMenuIn = function(liElement) {
 Menu.prototype.mainMenuOut = function(liElement) {
 	var oThis = this;
 	var subMenuRef = liElement.getElementsByTagName("ul")[0];
-	$(subMenuRef).stop(true, true).slideUp({duration: 100, easing: 'easeInBounce'});
+	$(subMenuRef).stop(false, true).slideUp({duration: 100, easing: 'easeInBounce'});
 }
 Menu.prototype.init = function() {
 	var oThis = this;

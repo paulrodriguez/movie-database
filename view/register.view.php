@@ -1,32 +1,31 @@
 <?php 
-session_start();
-session_regenerate_id();
 //error_reporting(E_ERROR | E_WARNING);
-require_once("model/session_vars.php");
+require_once("../model/session_vars.php");
 
  ?>
 <!DOCTYPE html>
 <html>
 <?php
-ini_set('display_erros', 'On');
-error_reporting(E_ALL);
+//ini_set('display_erros', 'On');
+//error_reporting(E_ALL);
 //phpinfo();
-include 'model/connect.php';
+//include '..model/connect.php';
 ?>
 
 <head> <title> Search Actor/Actress </title>
-	<?php include 'model/header.php'; ?>
-	<link rel='stylesheet' type='text/css' href="css/register.css">
+	<?php include '../model/header.php'; ?>
+	<link rel='stylesheet' type='text/css' href="/movies/css/register.css">
+
 </head>
 <body>
 <div class='outer_div'> <!--must be included on every page-->
 <?php
 
-include 'view/menu.php';
+include 'menu.php';
 
 ?>
 <fieldset>
-<form method="post" action="model/validate.php?val=createaccount">
+<form method="post" action="/movies/controller/register.php">
 
 <table>
 	<tr>
@@ -67,7 +66,7 @@ include 'view/menu.php';
 <input type="password" id="txtPwd" name="txtPwd" value=""/> <br />
 <label for="txtConfirmPwd">Confirm Password:</label>
 <input type="password" id="txtConfirmPwd" name="txtConfirmPwd" value=""/> <br />-->
-<input class='left' type="submit" value="REGISTER" />
+<input class='left' type="submit" name="registerbtn" value="REGISTER" />
 </form>
 </fieldset>
 </div>

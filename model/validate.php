@@ -11,16 +11,16 @@ if($_GET['val'] == 'createaccount') {
 
 
 
-	if($validator->validatePHP() == 0) {
+	if($this->validator->validatePHP() == 0) {
 		header("Location: ../register.php");
 	}
 	else {
-		if($validator->insertData() == 1) {
+		if($this->validator->insertData() == 1) {
 			session_destroy();
-			header('Location: ../index.php');
+			header('Location: /movies');
 		}
 		else {
-			header('Location: ../register.php');
+			include_once "../view/register.view.php";
 		}
 		//echo "your info will be saved to the database";
 	}
