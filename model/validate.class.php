@@ -2,7 +2,7 @@
 //session_start();
 include_once("mysqlconnect.class.php");
 //this class is included in the page that is using it
-class Validate {
+class Validate extends MySqlConnect {
 	public function __construct() {
 		parent::__construct();
 		//$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
@@ -60,7 +60,7 @@ class Validate {
 		}
 	}
 	
-	public function validatePHP() {
+	public function validateRegisterFields() {
 		$iserror = 1;
 		if($this->validateUsername($_POST['txtUsername']) == 0) $iserror = 0;
 		if($this->validateEmail($_POST['txtEmail']) <= 0) $iserror = 0;
@@ -69,6 +69,7 @@ class Validate {
 		if($this->validatePassword($_POST['txtPwd'], $_POST['txtConfirmPwd']) == 0) $iserror = 0;
 		return $iserror;
 	}
+	
 	//return 1 if successful, else return 0
 	public function validateUsername($username) {
 		if($username == "") {

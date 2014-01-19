@@ -6,7 +6,8 @@ include("../model/variables.php");
 ?>
 <div class='nav'>
 	<div class='search_bar'>
-		<form method='get' action = '../controller/search.php'>
+		<!--<form method='get' action = '/movies/controller/search.php'>-->
+		<form method='get' action = '/movies/controller/search.php'>
 			<input style="font-size:12pt" type='text' name='search_query' value ='' />
 			<input style="font-size:12pt" type='submit' name='submit' value='SEARCH' />
 		</form>
@@ -46,7 +47,7 @@ include("../model/variables.php");
 					elseif($_SESSION['user']['login']  == 'yes') :
 					?>
 					<li class="page-item"><div><a href="#">MANAGE PROFILE</a></div></li>
-					<li class="page-item"><div><a href="model/logout.php">LOG OUT</a></div></li>
+					<li class="page-item"><div><a href="logout.php">LOG OUT</a></div></li>
 					<?php endif; ?>
 				</ul>
 			</li>

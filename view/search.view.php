@@ -51,7 +51,7 @@ if($nosearch == false) {
 		<tr>
 			<td><?php echo $row['first'] . " " . $row['last']; ?> </td> 
 			<td>(<?php echo $row['dob']; ?>)</td>
-			<td><a href="/movies/controller/actors.php?aid=<?php echo $row['id']; ?>">more info</a></td>
+			<td><a href="/movies/actors/<?php echo $row['id']; ?>/">more info</a></td>
 		</tr>
 	<?php	}//end of while loop ?>
 
@@ -65,7 +65,7 @@ if($nosearch == false) {
 		<?php while($rows = $getRelevantMovies->fetch_assoc()) { ?>
 
 			<tr>
-				<td> <?php echo $rows['title']; ?></td><td><a href="search_movie.php?movie=<?php echo $rows['id']; ?>">more info</a></td>
+				<td> <?php echo $rows['title']; ?></td><td><a href="/movies/movie/<?php echo $rows['id']; ?>/">more info</a></td>
 			</tr>
 			<?php } ?>
 		</table>

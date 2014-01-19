@@ -1,35 +1,31 @@
 <?php 
-session_start();
-session_regenerate_id();
-//error_reporting(E_ERROR | E_WARNING);
-if(!isset($_SESSION['valuelogin']['txtEmail'])) $_SESSION['valuelogin']['txtEmail'] = '';
 
-if(!isset($_SESSION['errorlogin']['txtEmail'])) $_SESSION['errorlogin']['txtEmail'] = '';
-if(!isset($_SESSION['errorlogin']['txtPwd'])) $_SESSION['errorlogin']['txtPwd'] = '';
+//error_reporting(E_ERROR | E_WARNING);
+
 
  ?>
 <!DOCTYPE html>
 <html>
 <?php
-ini_set('display_erros', 'On');
-error_reporting(E_ALL);
+//ini_set('display_erros', 'On');
+//error_reporting(E_ALL);
 //phpinfo();
-include 'model/connect.php';
+//include 'model/connect.php';
 ?>
 
 <head> <title> Search Actor/Actress </title>
-	<?php include 'model/header.php'; ?>
-	<link rel='stylesheet' type='text/css' href="css/register.css">
+	<?php include '../model/header.php'; ?>
+	<link rel='stylesheet' type='text/css' href="/movies/css/register.css">
 </head>
 <body>
 <div class='outer_div'> <!--must be included on every page-->
 <?php
 
-include 'view/menu.php';
+include 'menu.php';
 
 ?>
 <fieldset>
-<form method="post" action="model/validate.php?val=login">
+<form method="post" action="/movies/controller/login.php">
 	<table>
 		<tr>
 			<td>Email:</td>
@@ -41,7 +37,7 @@ include 'view/menu.php';
 		</tr>
 		
 	</table>
-	<input class='loginsubmit' type="submit" value="Log In" />
+	<input class='loginsubmit' name="login" type="submit" value="Log In" />
 </form>
 </body>
 </html>

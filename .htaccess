@@ -1,1 +1,22 @@
 Options -Indexes
+
+
+<Files view/menu.php>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+#ErrorDocument 404 /movies/index.php
+
+RewriteEngine On
+
+RewriteRule ^search/?$ controller/search.php [NC]
+RewriteRule ^actors/?$ controller/actors.php [NC]
+RewriteRule ^actors/([0-9]+)/?$ controller/actors.php?aid=$1 [NC]
+RewriteRule ^view/actors.view.php/?$ /movies/controller/actors.php [NC]
+
+RewriteRule ^movie/?$ controller/movies.php [NC]
+RewriteRule ^movie/([0-9]+)/?$ controller/movies.php?mid=$1 [NC]
+
+
+RewriteRule ^view/.*/?$ /movies/no_access.php [NC]
