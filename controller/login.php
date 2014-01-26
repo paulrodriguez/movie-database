@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_regenerate_id();
-if(!isset($_SESSION['valuelogin']['txtEmail'])) $_SESSION['valuelogin']['txtEmail'] = '';
+//if(!isset($_SESSION['valuelogin']['txtEmail'])) $_SESSION['valuelogin']['txtEmail'] = '';
 
 $_SESSION['errorlogin']['txtEmail'] = '';
 $_SESSION['errorlogin']['txtPwd'] = '';
@@ -21,13 +21,15 @@ class LoginController
 	
 	public function logIn() 
 	{
-	$_SESSION['valuelogin']['txtEmail'] = $_POST['txtEmail'];
+	$email = $_POST["txtEmail"];
+	//$_SESSION['valuelogin']['txtEmail'] = $_POST['txtEmail'];
 	//if log in successful return to  main page
 	//if($validator->validateEmail($_POST["txtEmail"]) == 1)
 	//login successful
 	if($this->validator->checkLogIn() == 1) {
 		$_SESSION['user']['login'] = 'yes';
 		$_SESSION['user']['email'] = $_POST["txtEmail"];
+		//$_SESSION['user']['uName'] = 
 		$_SESSION['timeout'] = time();
 		unset($_SESSION['valuelogin']);
 		unset($_SESSION['errorlogin']);

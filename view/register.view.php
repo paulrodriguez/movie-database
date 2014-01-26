@@ -30,19 +30,19 @@ include 'menu.php';
 <table>
 	<tr>
 		<td>User name:</td>
-		<td><input type='text' class='txt' id='txtUsername' name='txtUsername' value="<?php echo $_SESSION['values']['txtUsername']; ?>"/><span class='error'><?php echo $_SESSION['errors']['txtUsername'];?></span></td>
+		<td><input type='text' class='txt' id='txtUsername' name='txtUsername' value="<?php echo $user; ?>"/><span class='error'><?php echo $_SESSION['errors']['txtUsername'];?></span></td>
 	</tr>
 	<tr>
 		<td>First name:</td>
-		<td><input type='text' class='txt' id="txtFirst" name="txtFirst" value="<?php echo $_SESSION['values']['txtFirst'];?>"/><span class='error'><?php echo $_SESSION['errors']['txtFirst'];?></span></td>
+		<td><input type='text' class='txt' id="txtFirst" name="txtFirst" value="<?php echo $first;?>"/><span class='error'><?php echo $_SESSION['errors']['txtFirst'];?></span></td>
 	</tr>
 	<tr>
 		<td>Last name:</td>
-		<td><input type='text' class='txt' id="txtLast" name="txtLast" value="<?php echo $_SESSION['values']['txtLast'];?>" /><span class='error'><?php echo $_SESSION['errors']['txtLast'];?></span> </td>
+		<td><input type='text' class='txt' id="txtLast" name="txtLast" value="<?php echo $last;?>" /><span class='error'><?php echo $_SESSION['errors']['txtLast'];?></span> </td>
 	</tr>
 	<tr>
 		<td>Email:</td>
-		<td><input type='text' class='txt' id="txtEmail" name="txtEmail" value="<?php echo $_SESSION['values']['txtEmail'];?>"/><span class='error'><?php echo $_SESSION['errors']['txtEmail'];?></span> </td>
+		<td><input type='text' class='txt' id="txtEmail" name="txtEmail" value="<?php echo $email;?>"/><span class='error'><?php echo $_SESSION['errors']['txtEmail'];?></span> </td>
 	</tr>
 	<tr>
 		<td>Password:</td>

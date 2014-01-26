@@ -29,7 +29,7 @@ include 'menu.php';
 	<table>
 		<tr>
 			<td>Email:</td>
-			<td><input type='text' class='txt' name='txtEmail' id='txtEmail' value="<?php echo $_SESSION['valuelogin']['txtEmail'];?>"/><span class='error'><?php echo $_SESSION['errorlogin']['txtEmail'];?></span></td>
+			<td><input type='text' class='txt' name='txtEmail' id='txtEmail' value="<?php echo $email;?>"/><span class='error'><?php echo $_SESSION['errorlogin']['txtEmail'];?></span></td>
 		</tr>
 		<tr>
 			<td>Password</td>

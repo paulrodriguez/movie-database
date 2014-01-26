@@ -10,7 +10,7 @@ Options -Indexes
 
 RewriteEngine On
 
-RewriteRule ^search/?$ controller/search.php [NC]
+RewriteRule ^search/?$ /movies/controller/search.php [NC]
 RewriteRule ^actors/?$ controller/actors.php [NC]
 RewriteRule ^actors/([0-9]+)/?$ controller/actors.php?aid=$1 [NC]
 RewriteRule ^view/actors.view.php/?$ /movies/controller/actors.php [NC]

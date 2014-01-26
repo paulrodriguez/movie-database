@@ -7,7 +7,7 @@ class Validate extends MySqlConnect {
 	public function __construct() {
 		$this->salt = "neph@s7u_u7eG&MatH6mU4a?e@EBRat7";
 		parent::__construct();
-		//$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
+		
 	}
 	
 	public function __destruct()
@@ -21,15 +21,15 @@ class Validate extends MySqlConnect {
 			return 0;
 		}
 	
-		$query = $this->MySqli->query("SELECT * FROM user where email='".$_POST['txtEmail']."'");
+		$query = $this->MySqli->query("SELECT * FROM User where email='".$_POST['txtEmail']."'");
 		if($this->MySqli->affected_rows == 0) {
 			$_SESSION['errorlogin']['txtEmail'] = 'there is no account associated with this email.';
 			return 0;
 		}
 		else {
-			
+
 			$pwd = md5($_POST['txtEmail'] . $this->salt. $_POST['txtPwd']);
-			echo "password: ".$pwd;
+			
 			$_SESSION['errorlogin']['txtEmail'] = '';
 			$result = $query->fetch_assoc();
 		//	print_r($result);
@@ -39,23 +39,24 @@ class Validate extends MySqlConnect {
 				return 0;
 			}
 			else {
+				$_SESSION["user"]["username"] = $result['userName'];
 				$_SESSION['errorlogin']['txtPwd'] = '';
 				return 1;
 			}
 		}
 	}
 	
-	public function insertData() {
-		//$query  = "INSERT INTO user VALUES('".$_POST['txtUsername']."', '".$_POST['txtEmail']."', '".$_POST['txtPwd']."', '".$_POST['txtFirst']."', '".$_POST['txtLast']."')";
-		$password = md5($_POST["txtEmail"] . $this->salt . $_POST["txtPwd"]);
-		$query = "INSERT INTO user VALUES(?,?,?,?,?);";
+	public function insertData($aUsername, $aEmail,$aFirst,$aLast,$aPwd) {
+		
+		$password = md5($aEmail . $this->salt . $aPwd);
+		$query = "INSERT INTO User VALUES(?,?,?,?,?);";
 		if ($stmt = $this->MySqli->prepare($query)) {
 			$stmt->bind_param("sssss",$username,$email, $pwd, $first, $last);
-			$username = $_POST["txtUsername"];
-			$email = $_POST["txtEmail"];
+			$username = $aUsername;//_POST["txtUsername"];
+			$email = $aEmail;//_POST["txtEmail"];
 			$pwd = $password;//$_POST["txtPwd"];
-			$first = $_POST["txtFirst"];
-			$last = $_POST["txtLast"];
+			$first = $aFirst;//_POST["txtFirst"];
+			$last = $aLast;//_POST["txtLast"];
 			//$stmt->execute();
 			if(!$stmt->execute()) {
 				return 0;

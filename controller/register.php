@@ -15,35 +15,37 @@ class RegisterController
 	
 	}
 	
-	public function showRegisterPage()
+	public function showRegisterPage($user='', $email='', $first='', $last='')
 	{
 		include_once("../view/register.view.php");
 	}
 	
-	public function validateFields($username, $email, $first, $last, $pwd,$confirmpwd)
+	public function validateFields($txtUsername, $txtEmail, $firstName, $lastName, $pwd,$confirmpwd)
 	{
-		$_SESSION['values']['txtUsername'] = $_POST['txtUsername'];
-		$_SESSION['values']['txtEmail'] = $_POST['txtEmail'];
-		$_SESSION['values']['txtFirst'] = $_POST['txtFirst'];
-		$_SESSION['values']['txtLast'] = $_POST['txtLast'];
+		$user = $txtUsername;
+		$email = $txtEmail;
+		$first = $firstName;
+		$last = $lastName;
 		$iserror = 1;
-		if($this->validator->validateUsername($username) == 0) $iserror = 0;
-		if($this->validator->validateEmail($email) <= 0) $iserror = 0;
-		if($this->validator->validateFirstname($first) == 0) $iserror = 0;
-		if($this->validator->validateLastname($last) == 0) $iserror = 0;
+		if($this->validator->validateUsername($txtUsername) == 0) $iserror = 0;
+		if($this->validator->validateEmail($txtEmail) <= 0) $iserror = 0;
+		if($this->validator->validateFirstname($firstName) == 0) $iserror = 0;
+		if($this->validator->validateLastname($lastName) == 0) $iserror = 0;
 		if($this->validator->validatePassword($pwd, $confirmpwd) == 0) $iserror = 0;
-		
+		unset($_POST);
 		if($iserror == 0)
 		{
-			$this->showRegisterPage();
+			//echo "there were errors with the fields";
+			$this->showRegisterPage($user, $email, $first, $last);
 		}
 		else 
 		{
-			if($this->validator->insertData() == 1) {
+			if($this->validator->insertData($user,$email,$first,$last,$pwd) == 1) {
 				session_destroy();
 				header('Location: /movies');
 			}
 			else {
+			     echo "error with inserting data";
 				$this->showRegisterPage();
 			}
 		}
@@ -53,6 +55,7 @@ class RegisterController
 $registerController = new RegisterController();
 if(isset($_POST["registerbtn"]))
 {
+	//echo "trying to register";
 	$registerController->validateFields(
 		$_POST['txtUsername'], 
 		$_POST['txtEmail'], 

@@ -3,7 +3,11 @@
 ///ini_set('display_erros', 'On');
 error_reporting (E_ALL ^ E_NOTICE);
 include("../model/variables.php");
+$userinfo = '';
+if(isset($_SESSION["user"]["username"]))
+	$userinfo = "logged in as: ".$_SESSION["user"]["username"];
 ?>
+<div style="width:100%;"><span style="float:right"><?php echo $userinfo;?></span></div>
 <div class='nav'>
 	<div class='search_bar'>
 		<!--<form method='get' action = '/movies/controller/search.php'>-->

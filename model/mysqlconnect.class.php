@@ -1,10 +1,15 @@
 <?php
-error_reporting(E_ALL^E_WARNING);
+//error_reporting(E_ALL^E_WARNING);
+
 //error_reporting(E_ERROR | E_PARSE);
+
 class MySqlConnect {
 	protected $MySqli;
 	public function __construct() {
-		$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
+	       //for Windows MySQL
+		//$this->MySqli = new mysqli("localhost", "paul", "1790dbz", "movie_db");
+		//for Ubuntu VM
+		$this->MySqli = new mysqli("localhost", "root", "pauldbz", "movie_db");
 		//add code for checking against database connection failure
 		if($this->MySqli->connect_errno) {
 		$error = $this->MySqli->connect_error;
