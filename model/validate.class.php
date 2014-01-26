@@ -3,7 +3,9 @@
 include_once("mysqlconnect.class.php");
 //this class is included in the page that is using it
 class Validate extends MySqlConnect {
+	private $salt;
 	public function __construct() {
+		$this->salt = "neph@s7u_u7eG&MatH6mU4a?e@EBRat7";
 		parent::__construct();
 		//$this->MySqli = new mysqli("localhost", "paul", "1790pdbz","movie_db");
 	}
@@ -25,11 +27,14 @@ class Validate extends MySqlConnect {
 			return 0;
 		}
 		else {
+			
+			$pwd = md5($_POST['txtEmail'] . $this->salt. $_POST['txtPwd']);
+			echo "password: ".$pwd;
 			$_SESSION['errorlogin']['txtEmail'] = '';
 			$result = $query->fetch_assoc();
 		//	print_r($result);
 			//die();
-			if($result['password'] != $_POST['txtPwd']) {
+			if($result['password'] != $pwd) {
 				$_SESSION['errorlogin']['txtPwd'] = 'invalid password';
 				return 0;
 			}
@@ -42,12 +47,13 @@ class Validate extends MySqlConnect {
 	
 	public function insertData() {
 		//$query  = "INSERT INTO user VALUES('".$_POST['txtUsername']."', '".$_POST['txtEmail']."', '".$_POST['txtPwd']."', '".$_POST['txtFirst']."', '".$_POST['txtLast']."')";
+		$password = md5($_POST["txtEmail"] . $this->salt . $_POST["txtPwd"]);
 		$query = "INSERT INTO user VALUES(?,?,?,?,?);";
 		if ($stmt = $this->MySqli->prepare($query)) {
 			$stmt->bind_param("sssss",$username,$email, $pwd, $first, $last);
 			$username = $_POST["txtUsername"];
 			$email = $_POST["txtEmail"];
-			$pwd = $_POST["txtPwd"];
+			$pwd = $password;//$_POST["txtPwd"];
 			$first = $_POST["txtFirst"];
 			$last = $_POST["txtLast"];
 			//$stmt->execute();

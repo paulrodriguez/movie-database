@@ -62,7 +62,7 @@ if(isset($_POST["registerbtn"]))
 		$_POST["txtConfirmPwd"]
 	);
 } else {
-	echo "did not click register";
+	//echo "did not click register";
 	unset($_SESSION["errors"]);
 	$registerController->showRegisterPage();
 }
