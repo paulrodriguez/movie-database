@@ -1,4 +1,13 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+class that validates user information.
+**/
+?>
+<?php
 //session_start();
 include_once("mysqlconnect.class.php");
 //this class is included in the page that is using it

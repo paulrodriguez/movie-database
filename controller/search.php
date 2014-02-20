@@ -1,4 +1,15 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Search.
+constructs the search for movies and actors.
+**/
+?>
+
+<?php
 require_once("../model/mysqlconnect.class.php");
 require_once("../model/actor.class.php");
 require_once("../model/movies.class.php");

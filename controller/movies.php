@@ -1,4 +1,16 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Movies.
+allows to retrieve all movies and output information
+about a specific movie.
+**/
+?>
+
+<?php
 include_once("../model/movies.class.php");
 include_once("../model/actor.class.php");
 include_once("../model/review.class.php");

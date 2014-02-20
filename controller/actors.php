@@ -1,4 +1,15 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Actors.
+allows to retrieve all actors, and display their info
+**/
+?>
+
+<?php
 include_once("../model/actor.class.php");
 include_once("../model/movies.class.php");
 class ActorsController {

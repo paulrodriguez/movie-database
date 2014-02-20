@@ -1,4 +1,16 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Reviews.
+allows to retrieve reviews from a movie and add a review
+to a movie.
+**/
+?>
+
+<?php
 include_once("../model/review.class.php");
 include_once("../model/movies.class.php");
 class ReviewController {

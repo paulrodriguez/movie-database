@@ -1,0 +1,12 @@
+/**
+Author:          Paul Rodriguez
+Created:         2/20/2014
+Last Updated:  2/20/2014
+
+this is a general style sheet for common elements
+found in every page in the movies database webste.
+**/
+
+.outer_div {margin: 0 auto; width:1000px;background-color:black; color:white}
+.outer_div a{color:yellow}
+body {background-color:black}

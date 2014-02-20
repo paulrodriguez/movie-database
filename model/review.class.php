@@ -1,4 +1,13 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for reviews.
+**/
+?>
+<?php
 include_once("mysqlconnect.class.php");
 class ReviewModel extends MySqlConnect {
 	//private $connection;

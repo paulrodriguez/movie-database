@@ -1,4 +1,15 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Login.
+validates user when they want to log in to their account
+**/
+?>
+
+<?php
 session_start();
 session_regenerate_id();
 //if(!isset($_SESSION['valuelogin']['txtEmail'])) $_SESSION['valuelogin']['txtEmail'] = '';

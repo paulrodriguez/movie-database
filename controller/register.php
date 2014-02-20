@@ -1,4 +1,15 @@
 <?php
+/**
+Author:           Paul Rodriguez
+Created:          Around February, 2014.
+Last Updated:  2/20/2014
+
+controller for Register.
+validates user registration information.
+**/
+?>
+
+<?php
 session_start();
 session_regenerate_id();
 require_once("../model/validate.class.php");

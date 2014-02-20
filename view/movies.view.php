@@ -1,3 +1,15 @@
+<?php
+/**
+Author:          Paul Rodriguez
+Created:         Around January, 2014
+Last Updated:  2/20/214
+
+this view page is the default page of movies database website.
+it shows only the menu or if the user made a search. then it will
+show the results of that search.
+
+**/
+?>
 <?php session_start(); session_regenerate_id(); ?>
 <!DOCTYPE html>
 <html>

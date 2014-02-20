@@ -1,63 +1,61 @@
+/**
+Author:          Paul Rodriguez
+Created:         Around February-March, 2013
+Last Updated:  2/20/2014
+
+this creates an effect of a dropdown menu using
+JQuery.  It does so using an Object that stores 
+reference to the ul element and creates the functions
+for the effects
+**/
+
+/**
+constructor for Menu object.
+@param mainMenuRef: takes ul element that holds the menu
+**/
 function Menu(mainMenuRef) {
 	this.menu = mainMenuRef;
 	this.complete = false;
 	this.init();
 }
 
+/**
+creates an effect when a user hovers over a sub-menu item
+in our menu.
+the effect should always finish even if user hovers out before it is supposed to finish.
+@param liElement: the element that was hovered
+**/
 Menu.prototype.subMenuIn = function(liElement) {
-//if(!this.complete) return;
-//	if(this.complete == false) return;
-//	var liClassName = liElement.className;
-	
-	//console.log(liElement);
-	//console.log("visibility:"+$(liElement).css("visbility"));
-	var oWidth = $(liElement).width();//style.width;
-	var currWidth = 0;
-	//console.log("oWith: "+oWidth);
-	//console.log("in before animation: " + $(liElement).width());
-	//console.log("right: "+parseInt($(liElement).css("right")));
 	$(liElement).animate({'width': '+=20px', 'right':'+=10px', 'height':'+=20px'},{duration: 50, 
-	progress: function() {
-		currWidth = $(this).width()-oWidth;
-		//console.log("current width cange:"+currWidth);
-		//console.
-	},
-	complete: function() {
-		$(this).css({"background-color":"yellow", "overflow":"visible", "display":"inner-block"});
-		//this.style.position = "relative";
-		//console.log("completed animation: "+$(this).width());
-	}
-	});
-	//console.log("in: " + $(liElement).css("width"));
-	//$(liElement).css({'background-color' : 'yellow', 'position':'relative', 'width':'+=20px'});
-}
-Menu.prototype.subMenuOut = function(liElement) {
-//if(!this.complete) return;
-//	if(this.complete == false) return;
-	//console.log("submenuout element width: "+$(liElement).width());
-
-	//console.log("width on hover out: "+$(liElement).width());
-	$(liElement).animate({'width': '-=20px', 'right':'-=10px', 'height':'-=20px'},{duration: 50, 
-		progress: function() {
-			//console.log("submenuout current width: "+$(this).width());
-		},
 		complete: function() {
-			this.style.backgroundColor = "white";
-			//console.log("submenuout finished function: "+$(this).width());//console.log(liElement);
-	
+			$(this).css({"background-color":"yellow", "overflow":"visible", "display":"inner-block"});
 		}
 	});
-	
-	//$(liElement).css({'background-color' : 'white', 'position':'relative','overflow':'visible'});
 }
 
+/**
+creates the effect for when the user moves out of a sub-menu item.
+the effect should always finish even if user hovers out before it is supposed to finish.
+@param liElement: item that user was on
+**/
+Menu.prototype.subMenuOut = function(liElement) {
+	$(liElement).animate({'width': '-=20px', 'right':'-=10px', 'height':'-=20px'},{duration: 50, 
+		complete: function() {
+			this.style.backgroundColor = "white";
+		}
+	});
+}
+
+/**
+drops sub-menu with an effect when the user hovers over one of
+the main menu elements.
+@param liElement: the li element hovered over.
+**/
 Menu.prototype.mainMenuIn = function(liElement) {
-	var oThis = this;
-	//console.log(liElement);
+	var oThis = this;  //  reference to this Menu object
+
 	var subMenuRef = liElement.getElementsByTagName("ul")[0];
-	//var subMenuRef = document.querySelectorAll(liElement.nodeName+">ul");
-	//console.log("query in mainMenuIn: "+liElement.nodeName+">ul");
-	//console.log(subMenuRef);
+	
 	$(subMenuRef).stop(false, true).slideDown({duration: 500, easing: 'easeOutBounce', complete: function() {
 		oThis.complete = true;
 	}});
@@ -65,17 +63,32 @@ Menu.prototype.mainMenuIn = function(liElement) {
 	
 }
 
+/**
+hides the sub-menu when user hovers out of a main menu element.
+@param liElement: take li element that was being hovered over
+**/
 Menu.prototype.mainMenuOut = function(liElement) {
-	var oThis = this;
+	var oThis = this;  //  reference to this Menu object
+	
 	var subMenuRef = liElement.getElementsByTagName("ul")[0];
 	$(subMenuRef).stop(false, true).slideUp({duration: 100, easing: 'easeInBounce'});
 }
 
+/**
+initializes the JQuery functions for the hovering events
+to add the effects and makes sure to remove the CSS version
+of the drop down menu.
+**/
 Menu.prototype.init = function() {
-	var oThis = this;
+	var oThis = this;  //  reference to this Menu object
 	var getSubMenu = "#"+this.menu.id+" > li > ul.subMenuCssDropdown";
-	//console.log("submenu query:"+getSubMenu);
+	
 	$(getSubMenu).removeClass("subMenuCssDropdown");
+	/*
+	call this object's functions for hover events.
+	note that we use oThis and not this as inside the hover function
+	the 'this' variable becomes a reference to the object that was selected.
+	*/
 	$("#"+this.menu.id+">li").hover(function() {oThis.mainMenuIn(this);}, function() {oThis.mainMenuOut(this);});
 	$("#"+this.menu.id+">li>ul>li").hover(function() {oThis.subMenuIn(this);}, function() {oThis.subMenuOut(this);});
 }
