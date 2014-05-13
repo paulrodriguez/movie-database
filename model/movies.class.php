@@ -50,7 +50,7 @@ class MoviesModel extends MySqlConnect{
 				$whereStringConditions = substr($whereStringConditions,0,sizeof($whereStringConditions)-6);
 			}
 		}
-		$fullQueryString = "SELECT ".$selectColumnsString." FROM Movie".$whereStringConditions;
+		$fullQueryString = "SELECT ".$selectColumnsString." FROM movie".$whereStringConditions;
 		
 		//$results = $this->MySqli->query("SELECT ".$selectColumnsString." FROM ".$constraints['table']."".$whereStringConditions);
 		$results = $this->MySqli->query($fullQueryString);
@@ -90,7 +90,7 @@ class MoviesModel extends MySqlConnect{
 				$whereStringConditions = substr($whereStringConditions,0,sizeof($whereStringConditions)-6);
 			}
 		}
-		$fullQueryString = "SELECT ".$selectColumnsString." FROM MovieActor, Movie".$whereStringConditions;
+		$fullQueryString = "SELECT ".$selectColumnsString." FROM movieactor, movie".$whereStringConditions;
 		
 		$results = $this->MySqli->query($fullQueryString);
 		//echo $results->affected_rows;
@@ -104,7 +104,7 @@ class MoviesModel extends MySqlConnect{
 	}
 	
 	public function searchMovies($constraints) {
-		$query = "SELECT id, title FROM Movie WHERE ";
+		$query = "SELECT id, title FROM movie WHERE ";
 		$size = sizeof($constraints);	
 			for($i=0;$i<$size;$i++) {
 				

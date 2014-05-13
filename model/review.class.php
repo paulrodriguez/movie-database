@@ -56,7 +56,7 @@ class ReviewModel extends MySqlConnect {
 	
 	
 	public function insertReview($user, $rating, $comment, $movie) {
-		$insertReviewQuery = "INSERT INTO Review (name, mid, rating, comment) VALUES(?,?,?,?)";
+		$insertReviewQuery = "INSERT INTO review (name, mid, rating, comment) VALUES(?,?,?,?)";
 		
 		if ($stmt = $this->MySqli->prepare($insertReviewQuery)) { 
 			$stmt->bind_param("siis",$username,$movie, $rating, $comment);
@@ -72,7 +72,7 @@ class ReviewModel extends MySqlConnect {
 	}
 	
 	public function getMovieReviews($movieId) {
-		$queryString = "SELECT * FROM Review WHERE mid=".$movieId;
+		$queryString = "SELECT * FROM review WHERE mid=".$movieId;
 		
 		$results = $this->MySqli->query($queryString);
 		if(!$results) {
@@ -84,7 +84,7 @@ class ReviewModel extends MySqlConnect {
  	}
 	
 	public function getAverageMovieReview($movieId) {
-		$queryString = "SELECT AVG(rating) AS avg_rating FROM Review WHERE mid=".$movieId;
+		$queryString = "SELECT AVG(rating) AS avg_rating FROM review WHERE mid=".$movieId;
 		$results = $this->MySqli->query($queryString);
 		if(!$results) {
 			return -1;

@@ -15,7 +15,7 @@ show the results of that search.
 <html>
 <?php
 include '../model/destroy_vars.php';
-include '../model/connect.php';
+
 ?>
 <head>
 	<title>MOVIE INFO</title>
@@ -56,7 +56,7 @@ include '../model/connect.php';
 	</form>
 	
 	<div id='movieInfo'><?php echo $getMovieInfo; ?></div>
-
+	<?php include 'footer.php'; ?>
 </div><!--end of class=outer_div-->
 </body>
 

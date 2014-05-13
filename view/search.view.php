@@ -75,7 +75,7 @@ if($nosearch == false) {
 
 ?>
 
-
+<?php include 'footer.php'; ?>
 </div>
 </body>
 </html>

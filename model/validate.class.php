@@ -30,7 +30,7 @@ class Validate extends MySqlConnect {
 			return 0;
 		}
 	
-		$query = $this->MySqli->query("SELECT * FROM User where email='".$_POST['txtEmail']."'");
+		$query = $this->MySqli->query("SELECT * FROM user where email='".$_POST['txtEmail']."'");
 		if($this->MySqli->affected_rows == 0) {
 			$_SESSION['errorlogin']['txtEmail'] = 'there is no account associated with this email.';
 			return 0;
@@ -58,7 +58,7 @@ class Validate extends MySqlConnect {
 	public function insertData($aUsername, $aEmail,$aFirst,$aLast,$aPwd) {
 		
 		$password = md5($aEmail . $this->salt . $aPwd);
-		$query = "INSERT INTO User VALUES(?,?,?,?,?);";
+		$query = "INSERT INTO user VALUES(?,?,?,?,?);";
 		if ($stmt = $this->MySqli->prepare($query)) {
 			$stmt->bind_param("sssss",$username,$email, $pwd, $first, $last);
 			$username = $aUsername;//_POST["txtUsername"];
@@ -93,7 +93,7 @@ class Validate extends MySqlConnect {
 			return 0;
 		}
 		//need to check if the username is not already in the database
-		$query = $this->MySqli->query('SELECT userName from User WHERE userName="' . $username . '"');
+		$query = $this->MySqli->query('SELECT userName from user WHERE userName="' . $username . '"');
 		if($this->MySqli->affected_rows > 0) {
 			$_SESSION['errors']['txtUsername'] = 'user name already in use.';
 			return 0;
@@ -114,7 +114,7 @@ class Validate extends MySqlConnect {
 		
 		if(preg_match("/^(?!.*\.{2})[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/",$email)) {
 			$_SESSION['errors']['txtEmail'] = '';
-			$query = $this->MySqli->query("SELECT email FROM User WHERE email='".$email."'");
+			$query = $this->MySqli->query("SELECT email FROM user WHERE email='".$email."'");
 			//if email already exists it will return a row
 			if($this->MySqli->affected_rows > 0) {
 				$_SESSION['errors']['txtEmail'] = 'an account with this email already exists.';

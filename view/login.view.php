@@ -39,5 +39,7 @@ include 'menu.php';
 	</table>
 	<input class='loginsubmit' name="login" type="submit" value="Log In" />
 </form>
+</fieldset>
+<?php include 'footer.php'; ?>
 </body>
 </html>

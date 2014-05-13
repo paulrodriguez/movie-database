@@ -92,6 +92,7 @@ include_once("menu.php");
 		</table>
 	</fieldset>
 </form>
+<?php include 'footer.php'; ?>
 </div><!--end class=outer_div-->
 </body>
 </html>

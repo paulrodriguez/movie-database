@@ -44,7 +44,7 @@ class ActorsModel extends MySqlConnect{
 				$whereStringConditions = substr($whereStringConditions,0,sizeof($whereStringConditions)-6);
 			}
 		}
-		$fullQueryString = "SELECT ".$selectColumnsString." FROM Actor".$whereStringConditions;
+		$fullQueryString = "SELECT ".$selectColumnsString." FROM actor".$whereStringConditions;
 		
 		//$results = $this->MySqli->query("SELECT ".$selectColumnsString." FROM ".$constraints['table']."".$whereStringConditions);
 		$results = $this->MySqli->query($fullQueryString);
@@ -60,7 +60,7 @@ class ActorsModel extends MySqlConnect{
 	
 	
 	public function getActorsInMovie($movieId) {
-		$queryString = "SELECT * FROM Actor A, MovieActor MA WHERE MA.aid=A.id AND MA.mid=".$movieId;
+		$queryString = "SELECT * FROM actor A, movieactor MA WHERE MA.aid=A.id AND MA.mid=".$movieId;
 		
 		$results = $this->MySqli->query($queryString);
 		if(!$results) {
@@ -73,7 +73,7 @@ class ActorsModel extends MySqlConnect{
 	}
 	
 	public function searchActors($constraints) {
-		$query = "select id, first, last, dob FROM Actor WHERE ";
+		$query = "select id, first, last, dob FROM actor WHERE ";
 		
 		for($i = 0; $i < sizeof($constraints); $i++) {
 			if($i != sizeof($constraints)-1) {

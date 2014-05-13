@@ -54,7 +54,7 @@ if(!is_int($getListOfActors)) {
 </form>
  <div id='actorInfo'><?php echo $getActorInfo; ?></div>
 
-
+<?php include 'footer.php'; ?>
 
 </div>
 </body>

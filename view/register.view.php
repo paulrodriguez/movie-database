@@ -69,6 +69,7 @@ include 'menu.php';
 <input class='left' type="submit" name="registerbtn" value="REGISTER" />
 </form>
 </fieldset>
+<?php include 'footer.php'; ?>
 </div>
 </body>
 
